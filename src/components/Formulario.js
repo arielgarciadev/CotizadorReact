@@ -55,7 +55,7 @@ const Error = styled.div`
 
 
 
-function Formulario() {
+function Formulario({guardarResumen}) {
 
     // STATES
     const [datos, guardarDatos] = useState({
@@ -88,7 +88,7 @@ function Formulario() {
         }
 
         guardarError(false)
-    }
+    
 
     // Precio base es 2000
     let resultado = 2000;
@@ -102,7 +102,7 @@ function Formulario() {
     // Americano +15%
     // Asiatico +5%
     // Europeo +30%
-    resultado = calcularMarca(marca) * resultado
+    resultado = calcularMarca(marca) * resultado;
 
     // Plan Básico +20%
     // Completo +50%
@@ -111,6 +111,13 @@ function Formulario() {
 
     // Total
     console.log(resultado);
+
+    guardarResumen({
+        cotizacion: resultado,
+        datos
+    });
+    
+    }
 
     return (
         <form
@@ -131,6 +138,7 @@ function Formulario() {
                     <option value="europeo">Europeo</option>
                     <option value="asiatico">Asiatico</option>
                 </Select>
+
             </Campo>
             <Campo>
                 <Label>Año</Label>
