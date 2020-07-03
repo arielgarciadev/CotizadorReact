@@ -55,7 +55,7 @@ const Error = styled.div`
 
 
 
-function Formulario({guardarResumen}) {
+function Formulario({guardarResumen,guardarCargando}) {
 
     // STATES
     const [datos, guardarDatos] = useState({
@@ -110,12 +110,18 @@ function Formulario({guardarResumen}) {
     resultado = parseFloat(incrementoPlan * resultado).toFixed(2);
 
     // Total
-    console.log(resultado);
 
-    guardarResumen({
-        cotizacion: resultado,
-        datos
-    });
+    guardarCargando(true);
+
+    setTimeout(() => {
+        guardarCargando(false);
+
+        guardarResumen({
+            cotizacion: resultado,
+            datos
+        });
+    }, 2000);
+
     
     }
 
